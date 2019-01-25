@@ -1,0 +1,26 @@
+{
+  "configuration": {
+    "status": "error",
+    "name": "SpringPractice",
+    "packages": "org.apache.logging.log4j.test",
+    "Appenders": {
+      "Console": {
+        "name": "STDOUT",
+        "PatternLayout": {
+          "pattern": "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+        },
+        "ThresholdFilter": {
+          "level": "debug"
+        }
+      }
+    },
+    "loggers": {
+      "root": {
+        "level": "debug",
+        "AppenderRef": {
+          "ref": "STDOUT"
+        }
+      }
+    }
+  }
+}

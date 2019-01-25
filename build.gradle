@@ -1,0 +1,52 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.1.RELEASE'
+        springSecurityVersion = '5.2.0.BUILD-SNAPSHOT'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:0.5.1.RELEASE"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+group = 'com.event'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.1.1.RELEASE'
+    implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.1.1.RELEASE'
+    implementation "org.springframework.boot:spring-boot-starter-security:$springBootVersion"
+    implementation group: 'org.hibernate', name: 'hibernate-java8', version: '5.4.1.Final'
+    implementation group: 'org.thymeleaf', name: 'thymeleaf-spring5', version: '3.0.11.RELEASE'
+    implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-java8time', version: '3.0.3.RELEASE'
+
+
+
+    compileOnly 'org.projectlombok:lombok:1.18.4'
+
+    implementation group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.2.Final'
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.3.7.Final'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.7'
+    implementation('com.fasterxml.jackson.core:jackson-databind:2.9.7')
+    implementation group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '2.3.5'
+    implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.0.CR2'
+
+    compileOnly group: 'javax', name: 'javaee-api', version: '8.0'
+
+    implementation('com.h2database:h2:1.4.197')
+
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.4.0-M1'
+    testImplementation('org.springframework:spring-test:5.1.1.RELEASE')
+    testImplementation('org.mockito:mockito-inline:+')
+
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Events</title>
+</head>
+<body>
+
+    <h1>Event List</h1>
+    <div id="eventList">
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>member</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="e: ${allEvents}">
+                    <td th:text="${e.title}"></td>
+                    <td th:text="${e.type}"></td>
+                    <td>
+                        <ul>
+                            <li th:each="m: ${e.members}" th:text="${m}"></li>
+                        </ul>
+                    </td>
+                    <td th:text="${e.description}"></td>
+                    <td th:text="${#temporals.format(e.startDate, 'dd-MM-yyyy hh:mm')}"></td>
+                    <td th:text="${e.location}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="eventForm">
+        <form action="#" th:action="@{/events}" th:object="${event}" method="post">
+            <p>
+                <label for="eventTitle">Title: </label>
+                <input type="text" id="eventTitle" name="eventTitle" th:field="*{title}"/>
+            </p>
+
+            <p>
+                <label for="eventType">Type: </label>
+                <select id="eventType" name="eventType" th:field="*{type}">
+                    <option th:each="type: ${allEventTypes}"
+                            th:value="${type}"
+                            th:text="${type}">
+                    </option>
+                </select>
+            </p>
+
+            <p>
+                <label for="eventDescription">Description: </label>
+                <textarea id="eventDescription" name="eventDescription" th:field="*{description}"></textarea>
+            </p>
+
+            <p>
+                <label for="eventDate">Date: </label>
+                <input type="datetime-local" id="eventDate" name="eventDate" th:field="*{startDate}">
+            </p>
+
+            <p>
+                <label for="eventLocation">Location: </label>
+                <input type="text" id="eventLocation" name="eventLocation" th:field="*{location}">
+            </p>
+
+            <p>
+                <input type="submit" value="Confirm">
+            </p>
+        </form>
+    </div>
+</body>
+</html>
